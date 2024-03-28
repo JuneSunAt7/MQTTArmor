@@ -3,7 +3,9 @@
 import random
 
 from paho.mqtt import client as mqtt_client
+from logger.printer import Logger
 
+clientLogger = Logger() # init logger for output
 
 broker = 'broker.emqx.io'
 port = 1883
@@ -17,9 +19,9 @@ client_id = f'subscribe-{random.randint(0, 100)}'
 def connect_mqtt() -> mqtt_client:
     def on_connect(client, userdata, flags, rc):
         if rc == 0:
-            print("Connected to MQTT Broker!")
+            clientLogger.succes("Connected to MQTT Broker!")
         else:
-            print("Failed to connect, return code %d\n", rc)
+            clientLogger.error("Failed to connect, return code")
 
     client = mqtt_client.Client(client_id)
     # client.username_pw_set(username, password)
