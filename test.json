@@ -1,0 +1,5 @@
+{
+	"broker_address": "mqtt.eclipse.org",
+	"client_id": "client1",
+	"topics": ["topic1", "topic2"]
+}

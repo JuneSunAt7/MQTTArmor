@@ -1,5 +1,4 @@
-from client.publishmess import run
-from secure.setupconfig import Configure
-from managment.mainterm import run
+from client.subscribe import MqttSubscriber
+
 if __name__ == '__main__':
-    run()
+    test1 = MqttSubscriber('test.json')
