@@ -1,6 +1,7 @@
 # python 3.11
 
 import random
+import time
 
 from paho.mqtt import client as mqtt_client
 from logger.printer import *
@@ -8,17 +9,17 @@ from logger.printer import *
 broker = 'broker.emqx.io'
 port = 1883
 topic = "python/bled"
-# Generate a Client ID with the subscribe prefix.
-client_id = f'subscribe-{random.randint(0, 100)}'
+# Generate a Client ID with the publish prefix.
+client_id = f'publish-{random.randint(0, 1000)}'
 # username = 'emqx'
 # password = 'public'
 logger = Logger()
 
-
-def connect_mqtt() -> mqtt_client:
+def connect_mqtt():
     def on_connect(client, userdata, flags, rc):
         if rc == 0:
             logger.succes("Connected to MQTT Broker!")
+
         else:
             logger.error("Failed to connect, return code %d\n", rc)
 
@@ -29,17 +30,28 @@ def connect_mqtt() -> mqtt_client:
     return client
 
 
-def subscribe(client: mqtt_client):
-    def on_message(client, userdata, msg):
-        logger.succes(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-    client.subscribe(topic)
-    client.on_message = on_message
+def publish(client):
+    msg_count = 1
+    while True:
+        time.sleep(1)
+        msg = f"messages: {msg_count}"
+        result = client.publish(topic, msg)
+        # result: [0, 1]
+        status = result[0]
+        if status == 0:
+            logger.succes(f"Send `{msg}` to topic `{topic}`")
+        else:
+            logger.warning(f"Failed to send message to topic {topic}")
+        msg_count += 1
+        if msg_count > 5:
+            break
 
 
 def run():
     client = connect_mqtt()
-    subscribe(client)
-    client.loop_forever()
+    client.loop_start()
+    publish(client)
+    client.loop_stop()
 
 
 if __name__ == '__main__':
