@@ -9,13 +9,12 @@ broker = 'broker.emqx.io'
 port = 1883
 topics = []
 
-with open('test.conf', 'r') as file:
+with open('topics.conf', 'r') as file:
     for line in file:
         topic = line.strip()
         topics.append(topic)
+client_id = f'publish-{random.randint(0, 1000)}'
 
-# Generate a Client ID with the subscribe prefix.
-client_id = f'subscribe-{random.randint(0, 100)}'
 
 logger = Logger()
 

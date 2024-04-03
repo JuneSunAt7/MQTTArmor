@@ -1,5 +1,3 @@
-
-
 import random
 import time
 import configparser
@@ -11,10 +9,16 @@ broker = 'broker.emqx.io'
 port = 1883
 
 topics = []
-with open('test.conf', 'r') as file:
+with open('topics.conf', 'r') as file:
     for line in file:
         topic = line.strip()
         topics.append(topic)
+
+messages = []
+with open('messages.conf', 'r') as file:
+    for line in file:
+        message = line.strip()
+        messages.append(message)
 
 client_id = f'publish-{random.randint(0, 1000)}'
 logger = Logger()
@@ -32,14 +36,14 @@ def connect_mqtt():
     return client
 
 def publish(client, topic):
-    msg_count = 1
+    msg_count = 0
     while True:
         time.sleep(1)
-        msg = f"messages: {msg_count}"
+        msg = messages[msg_count % len(messages)]
         result = client.publish(topic, msg)
         status = result[0]
         if status == 0:
-            logger.succes(f"Send `{msg}` to topic `{topic}`")
+            logger.succes(f"Sent `{msg}` to topic `{topic}`")
         else:
             logger.warning(f"Failed to send message to topic {topic}")
         msg_count += 1
