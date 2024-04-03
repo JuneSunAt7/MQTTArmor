@@ -10,8 +10,7 @@ port = 1883
 topic = "python/bled"
 # Generate a Client ID with the subscribe prefix.
 client_id = f'subscribe-{random.randint(0, 100)}'
-# username = 'emqx'
-# password = 'public'
+
 logger = Logger()
 
 

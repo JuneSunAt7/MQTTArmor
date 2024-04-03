@@ -11,8 +11,6 @@ port = 1883
 topic = "python/bled"
 # Generate a Client ID with the publish prefix.
 client_id = f'publish-{random.randint(0, 1000)}'
-# username = 'emqx'
-# password = 'public'
 logger = Logger()
 
 def connect_mqtt():
