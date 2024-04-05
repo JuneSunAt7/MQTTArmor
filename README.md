@@ -1,29 +1,109 @@
-# That library use secure connecting for MQTT IoT devices
+# This library allows you to secure the connection between a smart home with MQTT and a central server.
+## A logging function is also provided here.
 
-> NOTE:
-> MQTT is a default IoT protocol and he hasn't secure.
-> It lib can be used for unstable connection.
-
-## Default tests:
-
-### Firstly, setup server:
-
-`python server/server.py`
-u can get green output, it signal about success config
-### Runing tests:
-
-`python test/test_connection.py`
-for get data to connection(port, ip, topic, broker)
-
-`python test/test_msg.py`
-for example testing message sender 
-
-### Using in user's projects:
+### to use run mainterm.py
 
 ```python
-from server.server import Setup
+absl-py==2.1.0
+altgraph==0.17.4
+asciimatics==1.15.0
+astunparse==1.6.3
+auto-py-to-exe==2.43.3
+blinker==1.7.0
+bottle==0.12.25
+bottle-websocket==0.2.9
+certifi==2024.2.2
+cffi==1.14.3
+charset-normalizer==3.3.2
+click==8.1.7
+cmake==3.28.3
+colorama==0.4.6
+configparser==6.0.1
+cryptography==3.1.1
+dlib==19.24.2
+Eel==0.16.0
+face-recognition==1.2.2
+face_recognition_models==0.3.0
+Flask==3.0.2
+flatbuffers==24.3.7
+future==1.0.0
+gast==0.5.4
+gevent==24.2.1
+gevent-websocket==0.10.1
+google-pasta==0.2.0
+greenlet==3.0.3
+grpcio==1.62.1
+h5py==3.10.0
+idna==3.6
+imutils==0.5.4
+itsdangerous==2.1.2
+Jinja2==3.1.3
+keras==3.1.1
+libclang==18.1.1
+loguru==0.7.2
+Markdown==3.6
+markdown-it-py==3.0.0
+MarkupSafe==2.1.5
+mdurl==0.1.2
+ml-dtypes==0.3.2
+namex==0.0.7
+numpy==1.26.4
+opencv-python==4.9.0.80
+opt-einsum==3.3.0
+optree==0.10.0
+packaging==24.0
+paho-mqtt==1.6.1
+pandas==2.2.1
+pefile==2023.2.7
+pillow==10.2.0
+prompt-toolkit==3.0.36
+protobuf==4.25.3
+pyasn1==0.4.8
+pycparser==2.20
+pyfiglet==1.0.2
+pyfingerprint==1.5
+Pygments==2.17.2
+pyinstaller==6.5.0
+pyinstaller-hooks-contrib==2024.3
+pyinstallerui==0.2.3
+pyparsing==3.1.2
+PyQt5==5.15.10
+PyQt5-Qt5==5.15.2
+PyQt5-sip==12.13.0
+pyqtdeploy==3.3.0
+pyserial==3.5
+python-dateutil==2.9.0.post0
+pytz==2024.1
+pywin32==306
+pywin32-ctypes==0.2.2
+questionary==2.0.1
+requests==2.31.0
+rich==13.7.1
+scapy==2.5.0
+setuptools==69.1.1
+simple-term-menu==1.6.4
+six==1.16.0
+tensorboard==2.16.2
+tensorboard-data-server==0.7.2
+tensorflow==2.16.1
+tensorflow-intel==2.16.1
+termcolor==2.4.0
+termgraph==0.5.3
+terminal-menu==0.0.0
+toml==0.10.2
+typing_extensions==4.10.0
+tzdata==2024.1
+urllib3==2.2.1
+wcwidth==0.2.13
+Werkzeug==3.0.1
+wheel==0.42.0
+whichcraft==0.6.1
+win32-setctime==1.1.0
+wrapt==1.16.0
+zope.event==5.0
+zope.interface==6.2
 
-if __name__ == main:
-    server = Setup()
-    server.run()
 ```
+`pip install -r requirements.txt`
+
+`python mainterm.py`
